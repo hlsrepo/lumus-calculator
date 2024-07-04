@@ -75,7 +75,15 @@
     </div>
     <div class="input-group">
         <label for="bmi">Body Mass Index (BMI):</label>
-        <input type="number" id="bmi" name="bmi" min="10" max="50" step="0.1" value="25">
+        <input type="number" id="bmi" name="bmi" min="10" max="50" step="0.1" readonly>
+    </div>
+    <div class="input-group">
+        <label for="weight">Weight (kg):</label>
+        <input type="number" id="weight" name="weight" min="40" max="300" value="70">
+    </div>
+    <div class="input-group">
+        <label for="height">Height (cm):</label>
+        <input type="number" id="height" name="height" min="100" max="250" value="170">
     </div>
     <div class="input-group">
         <label for="copd">Chronic Obstructive Pulmonary Disease (COPD):</label>
@@ -122,6 +130,15 @@
 </div>
 
 <script>
+    function calculateBMI() {
+        const weight = parseFloat(document.getElementById("weight").value);
+        const height = parseFloat(document.getElementById("height").value);
+        if (weight > 0 && height > 0) {
+            const bmi = weight / ((height / 100) ** 2);
+            document.getElementById("bmi").value = bmi.toFixed(1);
+        }
+    }
+
     function plcom2012(age, education, bmi, copd, cancer_hist, family_hist_lung_cancer, smoking_status, smoking_intensity, duration_smoking, smoking_quit_time) {
         const educationLevels = {
             "Less than 8 Years": 1,
@@ -163,6 +180,13 @@
         
         document.getElementById("result").innerText = `Your likelihood of developing lung cancer is approximately ${risk.toFixed(2)}%.`;
     }
+
+    // Automatically calculate BMI when height or weight is changed
+    document.getElementById("weight").addEventListener("input", calculateBMI);
+    document.getElementById("height").addEventListener("input", calculateBMI);
+
+    // Initial BMI calculation on page load
+    calculateBMI();
 </script>
 
 </body>
