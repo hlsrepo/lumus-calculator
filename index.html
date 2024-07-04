@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lung Cancer Risk Calculator</title>
     <style>
+
+        .input-group input#smoking_quit_time[readonly="true"] {
+            background: #f7f7f7;
+            color: gray;
+            border-color: gray;
+        }
+        div#height_imperial_group > div {
+            margin-right: 15px;
+        }
         .input-group input[type="radio"]{
             width: auto;
             height: unset;
@@ -74,218 +83,237 @@
             grid-template-columns: 1fr 1fr;
             grid-gap: 20px;
         }
+        @media(max-width:767px){
+            .field-group {
+                display: block;
+            }
+            div#height_imperial_group > div {
+                margin-right: 0;
+                margin-bottom: 25px;
+            }
+        }
     </style>
 </head>
 <body>
 
-<div class="calculator-field">
-    <p class="group-title">Basic information</p>
-    <div class="field-group">
-        <div class="input-group">
-            <label for="age">Age:</label>
-            <input type="number" id="age" name="age" min="55" max="75" value="60">
-        </div>
-        <div class="input-group">
-            <label for="education">Education Level:</label>
-            <select id="education" name="education">
-                <option value="Less than 8 Years">Less than 8 Years</option>
-                <option value="8-11 Years">8-11 Years</option>
-                <option value="Completed High School">Completed High School</option>
-                <option value="Post High School Training Other Than College">Post High School Training Other Than College</option>
-                <option value="Some College">Some College</option>
-                <option value="College Graduate">College Graduate</option>
-                <option value="Postgraduate">Postgraduate</option>
-            </select>
-        </div>
-    </div>
-    <p class="group-title">Clinical history</p>
-    <div class="field-group">
-        <div class="input-group">
-            <label for="copd">Chronic Obstructive Pulmonary Disease (COPD):</label>
-            <select id="copd" name="copd">
-                <option value="No">No</option>
-                <option value="Yes">Yes</option>
-            </select>
-        </div>
-        <div class="input-group">
-            <label for="cancer_hist">Cancer History:</label>
-            <select id="cancer_hist" name="cancer_hist">
-                <option value="No">No</option>
-                <option value="Yes">Yes</option>
-            </select>
-        </div>
-        <div class="input-group">
-            <label for="family_hist_lung_cancer">Family History of Lung Cancer:</label>
-            <select id="family_hist_lung_cancer" name="family_hist_lung_cancer">
-                <option value="No">No</option>
-                <option value="Yes">Yes</option>
-            </select>
-        </div>
-    </div>
-    <p class="group-title">Smoking history</p>
+    <div class="calculator-field">
+        <p class="group-title">Basic information</p>
         <div class="field-group">
-        <div class="input-group">
-            <label for="smoking_status">Smoking Status:</label>
-            <select id="smoking_status" name="smoking_status">
-                <option value="Former">Former</option>
-                <option value="Current">Current</option>
-            </select>
+            <div class="input-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" min="55" max="75" value="60">
+            </div>
+            <div class="input-group">
+                <label for="education">Education Level:</label>
+                <select id="education" name="education">
+                    <option value="Less than 8 Years">Less than 8 Years</option>
+                    <option value="8-11 Years">8-11 Years</option>
+                    <option value="Completed High School">Completed High School</option>
+                    <option value="Post High School Training Other Than College">Post High School Training Other Than College</option>
+                    <option value="Some College">Some College</option>
+                    <option value="College Graduate">College Graduate</option>
+                    <option value="Postgraduate">Postgraduate</option>
+                </select>
+            </div>
         </div>
-        <div class="input-group">
-            <label for="smoking_intensity">Smoking Intensity (cigarettes/day):</label>
-            <input type="number" id="smoking_intensity" name="smoking_intensity" min="1" max="100" value="20">
+        <p class="group-title">Clinical history</p>
+        <div class="field-group">
+            <div class="input-group">
+                <label for="copd">Chronic Obstructive Pulmonary Disease (COPD):</label>
+                <select id="copd" name="copd">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="cancer_hist">Cancer History:</label>
+                <select id="cancer_hist" name="cancer_hist">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="family_hist_lung_cancer">Family History of Lung Cancer:</label>
+                <select id="family_hist_lung_cancer" name="family_hist_lung_cancer">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                </select>
+            </div>
         </div>
-        <div class="input-group">
-            <label for="duration_smoking">Duration of Smoking (years):</label>
-            <input type="number" id="duration_smoking" name="duration_smoking" min="1" max="60" value="30">
+        <p class="group-title">Smoking history</p>
+        <div class="field-group">
+            <div class="input-group">
+                <label for="smoking_status">Smoking Status:</label>
+                <select id="smoking_status" name="smoking_status">
+                    <option value="Former">Former</option>
+                    <option value="Current">Current</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="smoking_intensity">Smoking Intensity (cigarettes/day):</label>
+                <input type="number" id="smoking_intensity" name="smoking_intensity" min="1" max="100" value="20">
+            </div>
+            <div class="input-group">
+                <label for="duration_smoking">Duration of Smoking (years):</label>
+                <input type="number" id="duration_smoking" name="duration_smoking" min="1" max="60" value="30">
+            </div>
+            <div class="input-group">
+                <label for="smoking_quit_time">Years Since Quitting Smoking:</label>
+                <input type="number" id="smoking_quit_time" name="smoking_quit_time" min="1" max="15" value="5">
+            </div>
         </div>
-        <div class="input-group">
-            <label for="smoking_quit_time">Years Since Quitting Smoking:</label>
-            <input type="number" id="smoking_quit_time" name="smoking_quit_time" min="1" max="15" value="5">
-        </div>
-    </div>
-    <p class="group-title">BMI calculator</p>
-    <div class="field-group">
-        <div>
+        <p class="group-title">BMI calculator</p>
+        <div class="bmi-field-group">
             <div class="input-group">
                 <label>Unit System:</label>
                 <label><input type="radio" name="unit" value="metric" checked> Metric (kg, cm)</label>
                 <label><input type="radio" name="unit" value="imperial"> Imperial (lbs, ft, in)</label>
             </div>
-            <div class="input-group" id="weight_metric_group">
-                <label for="weight_metric">Weight (kg):</label>
-                <input type="number" id="weight_metric" name="weight_metric" min="40" max="300" value="70">
+            <div id="metric-inputs" class="field-group">
+                <div class="input-group">
+                    <label for="weight_metric">Weight (kg):</label>
+                    <input type="number" id="weight" name="weight_metric" min="40" max="300" value="70">
+                </div>
+                <div class="input-group" id="height_metric_group">
+                    <label for="height_metric">Height (cm):</label>
+                    <input type="number" id="height" name="height_metric" min="100" max="250" value="170">
+                </div>
+
+              
             </div>
-            <div class="input-group" id="height_metric_group">
-                <label for="height_metric">Height (cm):</label>
-                <input type="number" id="height_metric" name="height_metric" min="100" max="250" value="170">
-            </div>
-            <div class="input-group imperial-group" style="display: none;">
-                <div>
-                    <label for="weight_imperial">Weight (lbs):</label>
-                    <input type="number" id="weight_imperial" name="weight_imperial" min="88" max="660" value="154">
+            <div id="imperial-inputs" class="field-group">
+                <div class="input-group imperial-group">
+                    <div>
+                        <label for="weight_imperial">Weight (lbs):</label>
+                        <input type="number" id="weight_imperial" name="weight_imperial" min="88" max="660" value="154">
+                    </div>
+                </div>
+                <div class="input-group imperial-group field-group" id="height_imperial_group">
+                    <div>
+                        <label for="height_imperial_ft">Height (ft):</label>
+                        <input type="number" id="height_feet" name="height_imperial_ft" min="3" max="8" value="5">
+                    </div>
+                    <div>
+                        <label for="height_imperial_in">Height (in):</label>
+                        <input type="number" id="height_inches" name="height_imperial_in" min="0" max="11" value="7">
+                    </div>
                 </div>
             </div>
-            <div class="input-group imperial-group" id="height_imperial_group" style="display: none;">
-                <div>
-                    <label for="height_imperial_ft">Height (ft):</label>
-                    <input type="number" id="height_imperial_ft" name="height_imperial_ft" min="3" max="8" value="5">
-                </div>
-                <div>
-                    <label for="height_imperial_in">Height (in):</label>
-                    <input type="number" id="height_imperial_in" name="height_imperial_in" min="0" max="11" value="7">
-                </div>
+            <div class="input-group">
+                <label for="bmi">Body Mass Index (BMI):</label>
+                <input type="number" id="bmi" name="bmi" min="10" max="50" step="0.1" readonly>
             </div>
         </div>
-        <div class="input-group">
-            <label for="bmi">Body Mass Index (BMI):</label>
-            <input type="number" id="bmi" name="bmi" min="10" max="50" step="0.1" readonly>
-        </div>
-    </div>
-    <button class="button" onclick="calculateRisk()">Calculate Likelihood</button>
-    <div id="result" class="result"></div>
-</div>
+        <button type="button" class="button" onclick="calculateRisk()">Calculate Likelihood</button>
+        <div id="result" class="result"></div>
 
-<script>
-    function calculateBMI() {
-        const unit = document.querySelector('input[name="unit"]:checked').value;
-        let weight, height;
-        
-        if (unit === "metric") {
-            weight = parseFloat(document.getElementById("weight_metric").value);
-            height = parseFloat(document.getElementById("height_metric").value);
-            bmi = weight / ((height / 100) ** 2);
-        } else {
-            weight = parseFloat(document.getElementById("weight_imperial").value);
-            const height_ft = parseFloat(document.getElementById("height_imperial_ft").value);
-            const height_in = parseFloat(document.getElementById("height_imperial_in").value);
-            height = (height_ft * 12) + height_in;
-            bmi = (weight / (height ** 2)) * 703;
-        }
-        
-        document.getElementById("bmi").value = bmi.toFixed(1);
-    }
+        <script>
+            function calculateBMI() {
+                const weightMetric = parseFloat(document.getElementById("weight").value);
+                const heightMetric = parseFloat(document.getElementById("height").value);
+                const weightImperial = parseFloat(document.getElementById("weight_imperial").value);
+                const heightFeet = parseFloat(document.getElementById("height_feet").value);
+                const heightInches = parseFloat(document.getElementById("height_inches").value);
+                const unit = document.querySelector('input[name="unit"]:checked').value;
+    
+                let bmi = 0;
+                if (unit === 'metric') {
+                    if (weightMetric > 0 && heightMetric > 0) {
+                        bmi = weightMetric / ((heightMetric / 100) ** 2);
+                    }
+                } else {
+                    const totalHeightInches = (heightFeet * 12) + heightInches;
+                    if (weightImperial > 0 && totalHeightInches > 0) {
+                        bmi = (weightImperial / (totalHeightInches ** 2)) * 703;
+                    }
+                }
+                document.getElementById("bmi").value = bmi.toFixed(2);
+            }
+    
+            function plcom2012(age, education, bmi, copd, cancer_hist, family_hist_lung_cancer, smoking_status, smoking_intensity, duration_smoking, smoking_quit_time) {
+                const educationLevels = {
+                    "Less than 8 Years": 1,
+                    "8-11 Years": 2,
+                    "Completed High School": 3,
+                    "Post High School Training Other Than College": 4,
+                    "Some College": 5,
+                    "College Graduate": 6,
+                    "Postgraduate": 7
+                };
+                education = educationLevels[education];
+    
+                const copdValue = copd === "Yes" ? 1 : 0;
+                const cancerHistValue = cancer_hist === "Yes" ? 1 : 0;
+                const familyHistLungCancerValue = family_hist_lung_cancer === "Yes" ? 1 : 0;
+                const smokingStatusValue = smoking_status === "Current" ? 1 : 0;
+    
+                let model = 0.0778868 * (age - 62) - 0.0812744 * (education - 4) - 0.0274194 * (bmi - 27) + 
+                            0.3553063 * copdValue + 0.4589971 * cancerHistValue + 0.587185 * familyHistLungCancerValue + 
+                            0.2597431 * smokingStatusValue - 1.822606 * ((smoking_intensity / 10) ** (-1) - 0.4021541613) + 
+                            0.0317321 * (duration_smoking - 27) - 0.0308572 * (smoking_quit_time - 10) - 4.532506;
+    
+                return (1 / (1 + Math.exp(-model))) * 100; // Convert to percentage
+            }
+    
+            function calculateRisk() {
+                const age = parseFloat(document.getElementById("age").value);
+                const education = document.getElementById("education").value;
+                const bmi = parseFloat(document.getElementById("bmi").value);
+                const copd = document.getElementById("copd").value;
+                const cancer_hist = document.getElementById("cancer_hist").value;
+                const family_hist_lung_cancer = document.getElementById("family_hist_lung_cancer").value;
+                const smoking_status = document.getElementById("smoking_status").value;
+                const smoking_intensity = parseFloat(document.getElementById("smoking_intensity").value);
+                const duration_smoking = parseFloat(document.getElementById("duration_smoking").value);
+                const smoking_quit_time = parseFloat(document.getElementById("smoking_quit_time").value);
+    
+                const risk = plcom2012(age, education, bmi, copd, cancer_hist, family_hist_lung_cancer, smoking_status, smoking_intensity, duration_smoking, smoking_quit_time);
+                
+                document.getElementById("result").innerText = `Your likelihood of developing lung cancer is approximately ${risk.toFixed(2)}%.`;
+            }
+    
+            function toggleUnits() {
+                const unit = document.querySelector('input[name="unit"]:checked').value;
+                if (unit === 'metric') {
+                    document.getElementById("metric-inputs").style.display = "grid";
+                    document.getElementById("imperial-inputs").style.display = "none";
+                } else {
+                    document.getElementById("metric-inputs").style.display = "none";
+                    document.getElementById("imperial-inputs").style.display = "grid";
+                }
+                calculateBMI(); // Recalculate BMI on unit change
+            }
+    
+            // Automatically calculate BMI when height or weight is changed
+            document.getElementById("weight").addEventListener("input", calculateBMI);
+            document.getElementById("height").addEventListener("input", calculateBMI);
+            document.getElementById("weight_imperial").addEventListener("input", calculateBMI);
+            document.getElementById("height_feet").addEventListener("input", calculateBMI);
+            document.getElementById("height_inches").addEventListener("input", calculateBMI);
+            
+            // Initial BMI calculation on page load
+            calculateBMI();
+    
+            // Initial unit toggle on page load
+            toggleUnits();
+    
+            // Handle unit change
+            document.querySelectorAll('input[name="unit"]').forEach((elem) => {
+                elem.addEventListener("change", toggleUnits);
+            });
+    
+            // Handle smoking status change
+            document.getElementById("smoking_status").addEventListener("change", function() {
+                const smokingStatus = document.getElementById("smoking_status").value;
+                if (smokingStatus === "Current") {
+                    document.getElementById("smoking_quit_time").value = 0;
+                    document.getElementById("smoking_quit_time").setAttribute("readonly", true);
+                } else {
+                    document.getElementById("smoking_quit_time").removeAttribute("readonly");
+                }
+            });
+        </script>
 
-    function plcom2012(age, education, bmi, copd, cancer_hist, family_hist_lung_cancer, smoking_status, smoking_intensity, duration_smoking, smoking_quit_time) {
-        const educationLevels = {
-            "Less than 8 Years": 1,
-            "8-11 Years": 2,
-            "Completed High School": 3,
-            "Post High School Training Other Than College": 4,
-            "Some College": 5,
-            "College Graduate": 6,
-            "Postgraduate": 7
-        };
-        education = educationLevels[education];
-
-        const copdValue = copd === "Yes" ? 1 : 0;
-        const cancerHistValue = cancer_hist === "Yes" ? 1 : 0;
-        const familyHistLungCancerValue = family_hist_lung_cancer === "Yes" ? 1 : 0;
-
-        let smokingStatusValue;
-        if (smoking_status === "Current") {
-            smokingStatusValue = 1;
-            smoking_quit_time = 0; // Make quitting time 0 for current smokers
-            document.getElementById("smoking_quit_time").value = 0;
-            document.getElementById("smoking_quit_time").readOnly = true;
-        } else if (smoking_status === "Former") {
-            smokingStatusValue = 0;
-            document.getElementById("smoking_quit_time").readOnly = false;
-        } else {
-            smokingStatusValue = -1;
-        }
-
-        const risk = age + education + bmi + copdValue + cancerHistValue + familyHistLungCancerValue + smokingStatusValue + smoking_intensity + duration_smoking - smoking_quit_time;
-        return risk / 10;
-    }
-
-    function calculateRisk() {
-        const age = parseFloat(document.getElementById("age").value);
-        const education = document.getElementById("education").value;
-        const bmi = parseFloat(document.getElementById("bmi").value);
-        const copd = document.getElementById("copd").value;
-        const cancer_hist = document.getElementById("cancer_hist").value;
-        const family_hist_lung_cancer = document.getElementById("family_hist_lung_cancer").value;
-        const smoking_status = document.getElementById("smoking_status").value;
-        const smoking_intensity = parseFloat(document.getElementById("smoking_intensity").value);
-        const duration_smoking = parseFloat(document.getElementById("duration_smoking").value);
-        const smoking_quit_time = parseFloat(document.getElementById("smoking_quit_time").value);
-
-        const risk = plcom2012(age, education, bmi, copd, cancer_hist, family_hist_lung_cancer, smoking_status, smoking_intensity, duration_smoking, smoking_quit_time);
-        document.getElementById("result").innerText = `Your likelihood of developing lung cancer is approximately ${risk.toFixed(2)}%.`;
-    }
-
-    function toggleUnitSystem() {
-        const unit = document.querySelector('input[name="unit"]:checked').value;
-        if (unit === "metric") {
-            document.getElementById("height_metric_group").style.display = "block";
-            document.getElementById("weight_metric_group").style.display = "block";
-            document.querySelectorAll(".imperial-group").forEach(el => el.style.display = "none");
-        } else {
-            document.getElementById("height_metric_group").style.display = "none";
-            document.getElementById("weight_metric_group").style.display = "none";
-            document.querySelectorAll(".imperial-group").forEach(el => el.style.display = "flex");
-        }
-        calculateBMI();
-    }
-
-    document.getElementById("weight_metric").addEventListener("input", calculateBMI);
-    document.getElementById("height_metric").addEventListener("input", calculateBMI);
-    document.getElementById("weight_imperial").addEventListener("input", calculateBMI);
-    document.getElementById("height_imperial_ft").addEventListener("input", calculateBMI);
-    document.getElementById("height_imperial_in").addEventListener("input", calculateBMI);
-    document.querySelectorAll('input[name="unit"]').forEach(radio => radio.addEventListener("change", toggleUnitSystem));
-    document.getElementById("smoking_status").addEventListener("change", function() {
-        const smoking_status = document.getElementById("smoking_status").value;
-        if (smoking_status === "Current") {
-            document.getElementById("smoking_quit_time").value = 0;
-            document.getElementById("smoking_quit_time").readOnly = true;
-        } else {
-            document.getElementById("smoking_quit_time").readOnly = false;
-        }
-    });
-    window.onload = toggleUnitSystem;
-</script>
 
 </body>
 </html>
