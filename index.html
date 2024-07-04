@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lung Cancer Risk Calculator</title>
     <style>
-
+        .calculator-field *{
+            font-family: var(--kayak);
+        }
         .input-group input#smoking_quit_time[readonly="true"] {
             background: #f7f7f7;
             color: gray;
@@ -18,16 +20,6 @@
             width: auto;
             height: unset;
         }
-        body {
-            font-family: Kayak sans, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
         .input-group {
             margin-bottom: 25px;
         }
@@ -37,6 +29,7 @@
             font-weight: normal;
             font-size: 16px;
             color: #002D72;
+            font-family: Arial custom, sans-serif;
         }
         .input-group input, .input-group select {
             width: -webkit-fill-available;
@@ -45,6 +38,7 @@
             height: 48px;
             padding: 0 10px;
             max-width: 100%;
+            font-family: Arial custom, sans-serif;
         }
         .button {
             text-transform: uppercase;
@@ -65,9 +59,7 @@
         p.group-title {
             color: #002D72;
             font-style: normal;
-            font-weight: 700;
             line-height: 39px; 
-            font-family: kayak sans, sans-serif;
             font-size: 24px;
         }
 
@@ -90,6 +82,9 @@
             div#height_imperial_group > div {
                 margin-right: 0;
                 margin-bottom: 25px;
+            }
+            .calculator-field{
+                padding: 20px;
             }
         }
     </style>
